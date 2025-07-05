@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Portfolio Website</title>
+    <!-- Style Css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Remix Icon Cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" />
+    <!-- Swiper Slide Cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.css"
+        integrity="sha512-pmAAV1X4Nh5jA9m+jcvwJXFQvCBi3T17aZ1KWkqXr7g/O2YMvO8rfaa5ETWDuBvRq6fbDjlw4jHL44jNTScaKg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .fade-in {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Education Section Animations */
+        .Education_Section {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Stable education items - no floating text */
+        .Experience_Main {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInFromLeft 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        .Experience_Main:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .Experience_Main:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .Experience_Main:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes slideInFromLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Floating timeline lines with enhanced effects */
+        .Experience_Main::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), rgba(195, 50, 58, 0.3));
+            transform: scaleY(0);
+            transform-origin: top;
+            animation: growLine 1s ease-out forwards, lineFloat 4s ease-in-out infinite, lineGlow 3s ease-in-out infinite;
+            border-radius: 2px;
+        }
+
+        .Experience_Main:nth-child(1)::before {
+            animation-delay: 0.5s, 1s, 1.5s;
+        }
+
+        .Experience_Main:nth-child(2)::before {
+            animation-delay: 0.7s, 1.5s, 2s;
+        }
+
+        .Experience_Main:nth-child(3)::before {
+            animation-delay: 0.9s, 2s, 2.5s;
+        }
+
+        @keyframes growLine {
+            to {
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes lineFloat {
+
+            0%,
+            100% {
+                transform: scaleY(1) translateX(0);
+            }
+
+            25% {
+                transform: scaleY(1.05) translateX(2px);
+            }
+
+            50% {
+                transform: scaleY(0.98) translateX(0);
+            }
+
+            75% {
+                transform: scaleY(1.02) translateX(-1px);
+            }
+        }
+
+        @keyframes lineGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 10px rgba(195, 50, 58, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(195, 50, 58, 0.8), 0 0 30px rgba(195, 50, 58, 0.3);
+            }
+        }
+
+        /* Animated background pattern for title */
+        .Experience_title h2 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .Experience_title h2::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(195, 50, 58, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Hover effects - no floating for text */
+        .Experience_Main:hover {
+            transform: translateX(8px) scale(1.01);
+            transition: transform 0.3s ease;
+        }
+
+        .Experience_Main:hover .Year span {
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+            text-shadow: 0 0 10px rgba(195, 50, 58, 0.5);
+        }
+
+        /* Floating timeline dots with enhanced animations */
+        .Experience_Main::after {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: radial-gradient(circle, var(--primary-color), #ff6b6b);
+            border-radius: 50%;
+            border: 4px solid #fff;
+            animation: dotFloat 3s ease-in-out infinite, dotPulse 2s ease-in-out infinite;
+            z-index: 10;
+            box-shadow: 0 0 15px rgba(195, 50, 58, 0.4);
+        }
+
+        .Experience_Main:nth-child(1)::after {
+            animation-delay: 0.8s, 1s;
+        }
+
+        .Experience_Main:nth-child(2)::after {
+            animation-delay: 1.3s, 1.5s;
+        }
+
+        .Experience_Main:nth-child(3)::after {
+            animation-delay: 1.8s, 2s;
+        }
+
+        @keyframes dotFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+
+            33% {
+                transform: translateY(-3px) scale(1.1);
+            }
+
+            66% {
+                transform: translateY(2px) scale(0.95);
+            }
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(195, 50, 58, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 25px rgba(195, 50, 58, 0.8), 0 0 35px rgba(195, 50, 58, 0.2);
+            }
+        }
+
+        /* Text typing effect for education content */
+        .Experience_Info p {
+            opacity: 0;
+            animation: typeIn 1s ease-out forwards;
+        }
+
+        .Experience_Main:nth-child(1) .Experience_Info p {
+            animation-delay: 1s;
+        }
+
+        .Experience_Main:nth-child(2) .Experience_Info p {
+            animation-delay: 1.2s;
+        }
+
+        .Experience_Main:nth-child(3) .Experience_Info p {
+            animation-delay: 1.4s;
+        }
+
+        @keyframes typeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced floating background particles */
+        .Experience_title::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: particleFloat 6s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes particleFloat {
+
+            0%,
+            100% {
+                transform: translate(-50%, 0) scale(1);
+                opacity: 0.6;
+            }
+
+            25% {
+                transform: translate(-30px, -20px) scale(1.2);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: translate(20px, -10px) scale(0.8);
+                opacity: 0.4;
+            }
+
+            75% {
+                transform: translate(-10px, -30px) scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        /* Download button enhanced animation */
+        .Experience_btn button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: buttonGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(195, 50, 58, 0.3);
+            }
+
+            50% {
+                box-shadow: 0 0 30px rgba(195, 50, 58, 0.6);
+            }
+        }
+
+        .Experience_btn button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .Experience_btn button:hover::before {
+            left: 100%;
+        }
+
+        .Experience_btn button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(195, 50, 58, 0.4);
+            animation-play-state: paused;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="Navbar">
+        <div class="Nav_Left">
+            <div class="Logo">
+                <h3>Alan Prakash.</h3>
+            </div>
+            <ul>
+                <li>
+                    <p>+91 7708222664</p>
+                </li>
+
+                <li>
+                    <p>alanprakash20@gmail.com</p>
+                </li>
+            </ul>
+        </div>
+        <i class="ri-menu-line" id="Open_Menu"></i>
+        <div class="Sidebar_Menu">
+            <div class="Menu_Top">
+
+                <i class="ri-close-large-fill" id="Close_Menu"></i>
+            </div>
+            <ul class="Main_Menu">
+                <li><a href="#skills">Skills & Abilities</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <!-- <ul class="Menu_Bottom">
+                <li><a href="#">Gh.</a></li>
+                <li><a href="#">Tw.</a></li>
+                <li><a href="#">Li.</a></li>
+            </ul> -->
+        </div>
+    </nav>
+
+    <div class="Hero Section">
+        <img src="Image/plus-dark-pattern.png" alt="" id="element1">
+        <div class="Hero_title">
+            <p style="font-size: 30px;font-weight: bold;">I am into <span style="font-size: 30px;"
+                    class="typing-text fade-in"></span></p>
+
+            <div class="Counter">
+                <div class="Counter_Col">
+                    <h3 class="count" data-count="10">0</h3>
+                    <p>Completed Projects</p>
+                </div>
+                <div class="Counter_Col">
+                    <h3 class="count" data-count="5">0</h3>
+                    <p>Sutisfied Customer</p>
+                </div>
+            </div>
+            <button class="btn">
+                Watch Resume
+            </button>
+        </div>
+        <div class="Hero_Image">
+            <img src="Image/attachment-01.png" alt="">
+        </div>
+        <ul class="Menu_Bottom Social_Icon">
+            <li>
+                <a href="https://github.com/Alan-33" target="_blank" rel="noopener" aria-label="GitHub">
+                    <i class="ri-github-fill" style="color: gray;"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://x.com/AlanPrakash1133" target="_blank" rel="noopener" aria-label="X (Twitter)">
+                    <i class="ri-twitter-x-fill" style="color: gray;"></i>
+                </a>
+            </li>
+            <li>
+                <a href="mailto:yourname@gmail.com" aria-label="Send email">
+                    <i class="ri-mail-fill" style="color: gray;"></i>
+                </a>
+            </li>
+
+
+            <li>
+                <a href="https://www.linkedin.com/in/yourprofile" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <i class="ri-linkedin-box-fill" style="color: gray; font-size: 32px;"></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    <div class="UI_XI_Desinger Section2" id="portfolio">
+        <div class="Experience_Year">
+            <div class="num">
+                2<sup>+</sup>
+            </div>
+            <span>Year Experience Working</span>
+        </div>
+
+        <div class="Desinger_Main">
+            <h2>Web developer and specialized in
+                <span>logo creation and photo shoping.</span>
+            </h2>
+            <div class="Desinger_Wrap">
+                <div class="Item">
+                    <h3>Logo Creation</h3>
+                    <p>Designed modern and visually appealing logos tailored to meet unique branding objectives.
+                        Experienced in using tools like Adobe Illustrator and Canva to create impactful designs.</p>
+
+                </div>
+                <div class="Item">
+                    <h3>Full Stack Developer</h3>
+                    <p>Developed dynamic and responsive websites using HTML, CSS, JavaScript, React, Node.js, and
+                        MongoDB.
+                        Handled both frontend and backend tasks with strong problem-solving skills.</p>
+
+                </div>
+                <div class="Item">
+                    <h3>Video Editing</h3>
+                    <p>Created professional-grade video content for promotions, events, and social media.
+                        Proficient in Premiere Pro, After Effects, and CapCut to deliver clean, engaging visuals with
+                        sound sync and transitions.</p>
+
+                </div>
+                <div class="Item">
+                    <h3>photo shoping</h3>
+                    <p> Expert in image editing, poster creation, and photo manipulation using Adobe Photoshop.
+                        Delivered quality designs for digital marketing, branding, and print.</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="Experience Section" id="education" style="opacity: 0; transform: translateY(50px);">
+        <div class="Experience_title">
+            <h2>Education</h2>
+        </div>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="Experience_Slide">
+                        <div class="Experience_Main"
+                            style="opacity: 0; transform: translateX(-50px); position: relative;">
+                            <div class="Year Experience_Content">
+                                <span>2022- 2026</span>
+                            </div>
+                            <div class="Desinger Experience_Content">
+                                <h5> CCET</h5>
+                            </div>
+                            <div class="Experience_Info">
+                                <p>
+                                    Pursuing B.E.CSE CGPA-8.0
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="Experience_Main"
+                            style="opacity: 0; transform: translateX(-50px); position: relative;">
+                            <div class="Year Experience_Content">
+                                <span>2020- 2022</span>
+                            </div>
+                            <div class="Desinger Experience_Content">
+                                <h5> Amrita Vidyalayam</h5>
+                            </div>
+                            <div class="Experience_Info">
+                                <p>
+                                    Passed out 12th with 72%
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="Experience_Main"
+                            style="opacity: 0; transform: translateX(-50px); position: relative;">
+                            <div class="Year Experience_Content">
+                                <span>2019- 2020</span>
+                            </div>
+                            <div class="Desinger Experience_Content">
+                                <h5> Sri Chaitanya Techno School</h5>
+                            </div>
+                            <div class="Experience_Info">
+                                <p>
+                                    Passed out 10th with 71%
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="Experience_btn">
+            <button>Download Resume <i class="ri-arrow-down-fill"></i></button>
+        </div>
+    </div>
+    <div class="VIt Section2" id="skills">
+        <div class="element">
+            <img src="Image/plus-light-pattern.png" alt="" id="Plus_element">
+        </div>
+        <div class="VIt_Image">
+            <img src="Image/attachment-07.jpg" alt="">
+            <img src="Image/parallax-particle-01.png" alt="" id="Particle_element1">
+            <img src="Image/parallax-particle-02.png" alt="" id="Particle_element2">
+            <img src="Image/parallax-particle-03.png" alt="" id="Particle_element3">
+        </div>
+        <div class="VIt_title">
+            <h2>Skills <span>and</span> Abilities</h2>
+            <div class="Skills_Bar">
+
+                <div class="SkillsBar_Col">
+                    <span>Python, Java</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 60%; background: red;"></div>
+                    </div>
+                    <span class="percent">60%</span>
+                </div>
+                <div class="SkillsBar_Col">
+                    <span>C, SQL</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 70%; background: red;"></div>
+                    </div>
+                    <span class="percent">70%</span>
+                </div>
+                <div class="SkillsBar_Col">
+                    <span>HTML, CSS</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 75%; background: red;"></div>
+                    </div>
+                    <span class="percent">75%</span>
+                </div>
+                <div class="SkillsBar_Col">
+                    <span>Video Editing</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%; background: red;"></div>
+                    </div>
+                    <span class="percent">80%</span>
+                </div>
+                <div class="SkillsBar_Col">
+                    <span> Photoshop</span>
+                    <div class="progress-bar">
+                        <div class="progress" style="width: 80%; background: red;"></div>
+                    </div>
+                    <span class="percent">80%</span>
+                </div>
+            </div>
+            <style>
+                .Skills_Bar {
+                    margin-top: 2rem;
+                    max-width: 500px;
+                }
+
+                .SkillsBar_Col {
+                    margin-bottom: 1.2rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                }
+
+                .SkillsBar_Col span {
+                    min-width: 140px;
+                    font-weight: 500;
+                }
+
+                .progress-bar {
+                    flex: 1;
+                    background: #eee;
+                    border-radius: 8px;
+                    height: 12px;
+                    overflow: hidden;
+                    margin-right: 0.5rem;
+                }
+
+                .progress {
+                    height: 100%;
+                    border-radius: 8px;
+                    transition: width 1s;
+                }
+
+                .percent {
+                    min-width: 38px;
+                    text-align: right;
+                    font-size: 0.95em;
+                    color: #333;
+                    font-weight: 600;
+                }
+            </style>
+        </div>
+    </div>
+    <div class="Professional_Awards Section2" id="about">
+        <div class="Professional_Awards_title">
+            <h2>About <span style="color: var(--primary-color);">Me</span> </h2>
+            <p>Solution-oriented and problem solver with college level
+                experience. Highly skilled in communication, collaboration,
+                and technical documentation. I further aim my career in
+                Computer Science with a position that will allow me to expand
+                my horizons.
+            </p>
+            <div class="Awards_Wrap">
+
+
+            </div>
+        </div>
+        <div class="Professional_Awards_Image">
+            <img src="Image/attachment-06.jpg" alt="">
+
+        </div>
+    </div>
+    <div class="Testimonials Section" id="testimonials">
+        <div class="Testimonials_title">
+            <h2>Work and Testimonials</h2>
+        </div>
+        <div class="swiper Testimonials_Swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="Testimonials_Slide">
+                        <div class="Testimonials_Image">
+                            <img src="Image/avatar-01.jpg" alt="">
+                        </div>
+                        <div class="Testimonials_Info">
+                            <p>
+                                The Crime Reporting System is a web-based application designed to enable citizens to
+                                report crimes online quickly and securely.
+                                It provides an easy interface for users to file complaints, view status updates, and
+                                communicate with law enforcement.
+                                This system helps improve transparency, ensures timely action, and supports digital
+                                crime management by reducing manual paperwork and enhancing coordination between public
+                                and police departments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="Testimonials_Slide">
+                        <div class="Testimonials_Image">
+                            <img src="Image/avatar-02.jpg" alt="">
+                        </div>
+                        <div class="Testimonials_Info">
+                            <p>
+                                Proud to have designed the logo for a freelance company specializing in software
+                                development and digital solutions.
+                                Their services span mobile & web applications, UI/UX design, web development, and
+                                creative branding.
+                                The logo reflects a clean, modern, and tech-centric identity aligned with their vision.
+                                It was crafted to communicate reliability, innovation, and creativity.
+                                Looking forward to contributing to more such impactful brand identities.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="Testimonials_Slide">
+                        <div class="Testimonials_Image">
+                            <img src="Image/avatar-03.jpg" alt="">
+                        </div>
+                        <div class="Testimonials_Info">
+                            <p>
+                                I had the opportunity to design a logo for NUTRI MILLET, a brand dedicated to promoting
+                                healthy and nutritious millet-based foods.
+                                The goal was to create a clean, modern, and impactful brand identity that reflects the
+                                essence of health, sustainability, and natural goodness.
+                                By carefully selecting colors, typography, and design elements, the logo embodies the
+                                brand's mission to provide wholesome nutrition.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="Testimonials_Slide">
+                        <div class="Testimonials_Image">
+                            <img src="Image/avatar-04.jpg" alt="">
+                        </div>
+                        <div class="Testimonials_Info">
+                            <p>
+                                Proud to have designed the logo for a freelance company specializing in software
+                                development and digital solutions.
+                                Their services span mobile & web applications, UI/UX design, web development, and
+                                creative branding.
+                                The logo reflects a clean, modern, and tech-centric identity aligned with their vision.
+                                It was crafted to communicate reliability, innovation, and creativity.
+                                Looking forward to contributing to more such impactful brand identities.
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <div class="Contact Section" id="contact">
+        <div class="Contact_Left">
+            <div class="Contact_title">
+                <h2>Contact</h2>
+                <p>Every great project starts with a conversation. Let’s create something remarkable together.</p>
+            </div>
+            <div class="Contact_Details">
+                <div class="Contact_Col">
+                    <h6>Email:</h6>
+                    <a href="#">mikael.moore@gmail.com</a>
+                </div>
+                <div class="Contact_Col">
+                    <h6>Phone:</h6>
+                    <a href="#">mikael.moore@gmail.com</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="Contact_Right">
+            <h5>
+                I am always looking for great collaborators. Let’s message me and make <span>something together!</span>
+            </h5>
+            <div class="Contact_Form">
+                <div class="Inputs_Head">
+                    <div class="Input_Box">
+                        <div>
+                            <label>Your Name (requied)</label>
+                            <input type="text" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label>Your email (requied)</label>
+                            <input type="text" placeholder="Your Email">
+                        </div>
+                    </div>
+                    <div class="Input_Box">
+                        <div>
+                            <label>Category (optional)</label>
+                            <input type="text" placeholder="Category">
+                        </div>
+                        <div>
+                            <label>Choose a Budget (INR)</label>
+                            <select>
+                                <option>₹500 - ₹1000</option>
+                                <option>₹1000 - ₹10 000</option>
+                                <option>Above ₹10 000 </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <label>Your Message</label>
+                <textarea placeholder="Message"></textarea>
+                <button>
+                    Contact Me
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Swiper slide cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js"
+        integrity="sha512-Ysw1DcK1P+uYLqprEAzNQJP+J4hTx4t/3X2nbVwszao8wD+9afLjBQYjz7Uk4ADP+Er++mJoScI42ueGtQOzEA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const phrases = [
+            "web developer",
+            "frontend development",
+            "backend development",
+            "web designing",
+            "UI/UX Designing",
+            "web development"
+        ];
+        const typingText = document.querySelector(".typing-text");
+        let phraseIndex = 0;
+
+        function showNextPhrase() {
+            typingText.textContent = phrases[phraseIndex];
+            typingText.classList.remove("fade-in");
+            void typingText.offsetWidth; // Trigger reflow to restart animation
+            typingText.classList.add("fade-in");
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+        }
+
+        setInterval(showNextPhrase, 2000); // Change phrase every 2 seconds
+        showNextPhrase(); // Show the first phrase immediately        // Smooth scrolling and menu close functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuLinks = document.querySelectorAll('.Main_Menu a[href^="#"]');
+            const sidebarMenu = document.querySelector('.Sidebar_Menu');
+
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    // Close the mobile menu if it's open
+                    if (sidebarMenu && sidebarMenu.classList.contains('active')) {
+                        sidebarMenu.classList.remove('active');
+                    }
+
+                    // Get the target section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+
+                    if (targetSection) {
+                        e.preventDefault();
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // Education section scroll animations
+            const educationSection = document.querySelector('#education');
+            const experienceItems = document.querySelectorAll('.Experience_Main');
+            const educationTitle = document.querySelector('.Experience_title h2');
+
+            // Observer for education section with enhanced options
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const educationObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Trigger section fade-in
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'all 1s ease-out';
+
+                        // Add shimmer effect to title
+                        if (educationTitle) {
+                            educationTitle.style.position = 'relative';
+                            educationTitle.style.overflow = 'hidden';
+                        }
+
+                        // Trigger individual item animations with staggered effect
+                        experienceItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                // Initial slide-in animation only - no floating for text
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateX(0)';
+                                item.style.transition = 'all 0.8s ease-out';
+                            }, index * 200);
+                        });
+
+                        // Enhanced timeline and dot animations
+                        setTimeout(() => {
+                            experienceItems.forEach((item, index) => {
+                                // Timeline lines will float via CSS
+                                const beforeElement = window.getComputedStyle(item, '::before');
+                                const afterElement = window.getComputedStyle(item, '::after');
+                            });
+                        }, 1000);
+                    }
+                });
+            }, observerOptions);
+
+            if (educationSection) {
+                educationObserver.observe(educationSection);
+            }
+
+            // Enhanced hover effects - stable text, animated lines
+            experienceItems.forEach((item, index) => {
+                // Remove random movements for text stability
+
+                item.addEventListener('mouseenter', function () {
+                    // Stable text with subtle movement
+                    this.style.transform = 'translateX(10px) scale(1.02)';
+                    this.style.transition = 'transform 0.4s ease';
+                    this.style.boxShadow = '0 15px 40px rgba(195, 50, 58, 0.25)';
+                    this.style.zIndex = '10';
+
+                    // Add glow effect to year
+                    const yearSpan = this.querySelector('.Year span');
+                    if (yearSpan) {
+                        yearSpan.style.textShadow = '0 0 15px rgba(195, 50, 58, 0.8)';
+                    }
+
+                    // Enhanced timeline glow on hover
+                    this.style.setProperty('--timeline-glow', '0 0 30px rgba(195, 50, 58, 1)');
+                });
+
+                item.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateX(0) scale(1)';
+                    this.style.boxShadow = 'none';
+                    this.style.zIndex = '1';
+
+                    // Remove glow effect
+                    const yearSpan = this.querySelector('.Year span');
+                    if (yearSpan) {
+                        yearSpan.style.textShadow = 'none';
+                    }
+
+                    // Reset timeline glow
+                    this.style.removeProperty('--timeline-glow');
+                });
+
+                // Add click animation for feedback
+                item.addEventListener('click', function () {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+
+            // Enhanced download button animations
+            const downloadBtn = document.querySelector('.Experience_btn button');
+            if (downloadBtn) {
+                // Continuous glow effect
+                let glowIntensity = 0.3;
+                let glowDirection = 1;
+
+                setInterval(() => {
+                    glowIntensity += glowDirection * 0.1;
+                    if (glowIntensity >= 0.6 || glowIntensity <= 0.2) {
+                        glowDirection *= -1;
+                    }
+                    if (!downloadBtn.matches(':hover')) {
+                        downloadBtn.style.boxShadow = `0 0 20px rgba(195, 50, 58, ${glowIntensity})`;
+                    }
+                }, 100);
+
+                downloadBtn.addEventListener('click', function () {
+                    // Enhanced click animation
+                    this.style.transform = 'scale(0.95) rotate(2deg)';
+                    this.style.transition = 'transform 0.1s ease';
+
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1.05) rotate(-1deg)';
+                    }, 100);
+
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1) rotate(0deg)';
+                    }, 200);
+
+                    // Add ripple effect
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.5)';
+                    ripple.style.transform = 'scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    ripple.style.width = '20px';
+                    ripple.style.height = '20px';
+                    ripple.style.marginLeft = '-10px';
+                    ripple.style.marginTop = '-10px';
+
+                    this.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            }
+
+            // Animate background particles
+            function createFloatingParticle() {
+                const particle = document.createElement('div');
+                particle.style.position = 'absolute';
+                particle.style.width = '4px';
+                particle.style.height = '4px';
+                particle.style.background = 'var(--primary-color)';
+                particle.style.borderRadius = '50%';
+                particle.style.opacity = '0.6';
+                particle.style.pointerEvents = 'none';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '100%';
+                particle.style.animation = 'particleRise 8s linear infinite';
+
+                if (educationSection) {
+                    educationSection.appendChild(particle);
+
+                    setTimeout(() => {
+                        particle.remove();
+                    }, 8000);
+                }
+            }
+
+            // Create floating particles periodically
+            if (educationSection) {
+                setInterval(createFloatingParticle, 3000);
+            }
+
+            // Add CSS for particle rise animation
+            const particleStyle = document.createElement('style');
+            particleStyle.textContent = `
+                @keyframes particleRise {
+                    0% {
+                        transform: translateY(0) translateX(0) scale(1);
+                        opacity: 0.6;
+                    }
+                    25% {
+                        transform: translateY(-25vh) translateX(10px) scale(1.2);
+                        opacity: 0.8;
+                    }
+                    50% {
+                        transform: translateY(-50vh) translateX(-15px) scale(0.8);
+                        opacity: 0.4;
+                    }
+                    75% {
+                        transform: translateY(-75vh) translateX(5px) scale(1.1);
+                        opacity: 0.6;
+                    }
+                    100% {
+                        transform: translateY(-100vh) translateX(-10px) scale(0.5);
+                        opacity: 0;
+                    }
+                }
+                @keyframes ripple {
+                    to {
+                        transform: scale(4);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(particleStyle);
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+
+</html>
