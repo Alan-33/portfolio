@@ -186,10 +186,15 @@ nav .Logo h3 {
     color: var(--primary-color);
 }
 
+.Main_Menu ul {
+    margin: 0;
+    padding: 0;
+}
+
 .Main_Menu {
-    height: 250px;
+    height: 100vh;
     width: 100%;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
 }
 
@@ -207,7 +212,7 @@ nav .Logo h3 {
 }
 
 .Main_Menu li {
-    padding: 20px 0px;
+    padding: 10px 0px;
 }
 
 .Main_Menu li a {
@@ -1634,3 +1639,4 @@ nav .Logo h3 {
 
 
 }
+
