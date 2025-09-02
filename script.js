@@ -71,9 +71,10 @@ window.addEventListener('scroll', function(){
 })
 
 var typed = new Typed(".typing-text", {
-    strings: ["frontend development", "backend development", "web designing", "UI/UX Designing", "web development"],
+    strings: ["frontend development", "backend development", "web designing", "UI/UX Designing"],
     loop: true,
     typeSpeed: 50,
     backSpeed: 25,
     backDelay: 500,
+
 });
