@@ -188,7 +188,7 @@ nav .Logo h3 {
 
 .Main_Menu ul {
     margin: 0;
-    padding: 0;
+    padding-top: 10;
 }
 
 .Main_Menu {
@@ -212,7 +212,7 @@ nav .Logo h3 {
 }
 
 .Main_Menu li {
-    padding: 10px 0px;
+    padding: 20px 0px;
 }
 
 .Main_Menu li a {
@@ -1639,4 +1639,5 @@ nav .Logo h3 {
 
 
 }
+
 
