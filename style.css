@@ -187,7 +187,7 @@ nav .Logo h3 {
 }
 
 .Main_Menu {
-    height: 350px;
+    height: 250px;
     width: 100%;
     overflow: scroll;
     overflow-x: hidden;
@@ -1631,5 +1631,6 @@ nav .Logo h3 {
     .Contact_Right h5 {
         font-size: 1.2rem;
     }
+
 
 }
